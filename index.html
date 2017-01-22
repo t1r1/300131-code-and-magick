@@ -39,7 +39,7 @@ var wizardSpeed = 3;
 var wizardWidth = 70;
 
 var getFireballSpeed = function(left) {
-    return left === true ? 5 : 2;
+    return left ? 5 : 2;
 };
 
 var getWizardHeight = function() {
@@ -59,6 +59,7 @@ function getWizardY(height) {
     return position;
 };
 </script>
+<script src="js/stat.js" type="application/javascript"></script>
 <script src="js/game.js" type="application/javascript"></script>
 
 </body>
