@@ -9,18 +9,24 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.strokeStyle = 'Black';
   ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
-  ctx.fillText('Ура, вы победили!', 120, 40);
+  // ctx.fillText('Ура, вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 55);
   var max = -1;
+  var min = Infinity;
   for (var each = 0; each < times.length; each++ ) {
-    var maxTime = times[each];
-    if (maxTime > max) {
-      max = maxTime;
+    var userTime = times[each];
+    if (userTime > max) {
+      max = userTime;
+    }
+    if (userTime < min) {
+        min = userTime;
     }
   }
+  var theWinnerTakesItAll = names[times.indexOf(min)];
+  ctx.fillText('Лучшее время: ' + theWinnerTakesItAll, 120, 40);
   var histoHeight = 140;
   var histoX = 140;
-  var step = histoHeight / max; // не стала делать деление на min, как в вебинаре, так как внутри min = Infinity. как правильно?
+  var step = histoHeight / max; 
   var columnIndent = 90;
 
   for (var i = 0; i < times.length; i++) {
