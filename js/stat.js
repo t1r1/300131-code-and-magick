@@ -19,14 +19,14 @@ window.renderStatistics = function (ctx, names, times) {
       max = userTime;
     }
     if (userTime < min) {
-        min = userTime;
+      min = userTime;
     }
   }
   var theWinnerTakesItAll = names[times.indexOf(min)];
   ctx.fillText('Лучшее время: ' + theWinnerTakesItAll, 120, 40);
   var histoHeight = 140;
   var histoX = 140;
-  var step = histoHeight / max; 
+  var step = histoHeight / max;
   var columnIndent = 90;
 
   for (var i = 0; i < times.length; i++) {
