@@ -20,7 +20,7 @@ window.renderStatistics = function (ctx, names, times) {
   }
   var histoHeight = 140;
   var histoX = 140;
-  var step = histoHeight / max; // не стала делать деление на min, как в вебинаре, так как внутри min = Infinity. как правильно?
+  var step = histoHeight / max; // не стала делать нmin, как в вебинаре. как правильно?
   var columnIndent = 90;
 
   for (var i = 0; i < times.length; i++) {
