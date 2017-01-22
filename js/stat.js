@@ -13,6 +13,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', 120, 55);
   var max = -1;
   var min = Infinity;
+  var minIndex;
   for (var each = 0; each < times.length; each++) {
     var userTime = times[each];
     if (userTime > max) {
@@ -20,14 +21,15 @@ window.renderStatistics = function (ctx, names, times) {
     }
     if (userTime < min) {
       min = userTime;
+      minIndex = each;
     }
   }
-  var theWinnerTakesItAll = names[times.indexOf(min)];
+  var theWinnerTakesItAll = names[minIndex];
   ctx.fillText('Лучшее время: ' + theWinnerTakesItAll, 120, 40);
   var histoHeight = 140;
   var histoX = 140;
   var step = histoHeight / max;
-  var columnIndent = 90;
+  var columnIndent = 50;
 
   for (var i = 0; i < times.length; i++) {
     var name = names[i];
