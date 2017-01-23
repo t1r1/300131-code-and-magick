@@ -29,7 +29,7 @@ window.renderStatistics = function (ctx, names, times) {
   var histoHeight = 140;
   var histoX = 140;
   var step = histoHeight / max;
-  var columnIndent = 50;
+  var columnIndent = 90;
 
   for (var i = 0; i < times.length; i++) {
     var name = names[i];
