@@ -18,10 +18,10 @@ var nameInput = document.querySelector('.setup-user-name');
 nameInput.required = true;
 nameInput.maxLength = 50;
 
-var clearInputValue = function () {
-  this.value = ''; // очищаю поле ввода по клику на имя, почему-то npm test ругается на unexpected this - ?
-};
-nameInput.addEventListener('click', clearInputValue);
+// var clearInputValue = function (evt) {
+//   evt.target.value = ''; 
+// };
+// nameInput.addEventListener('click', clearInputValue);
 
 var wizard = document.querySelector('#wizard');
 var wizardCoat = wizard.querySelector('#wizard-coat');
