@@ -17,12 +17,6 @@ setupClose.addEventListener('click', setupClickClose);
 var nameInput = document.querySelector('.setup-user-name');
 nameInput.required = true;
 nameInput.maxLength = 50;
-
-// var clearInputValue = function (evt) {
-//   evt.target.value = ''; 
-// };
-// nameInput.addEventListener('click', clearInputValue);
-
 var wizard = document.querySelector('#wizard');
 var wizardCoat = wizard.querySelector('#wizard-coat');
 var wizardFireball = document.querySelector('.setup-fireball-wrap');
