@@ -13,14 +13,14 @@ var setupClickClose = function () {
 };
 
 var buttonSubmitClosed = function (evt) {
+  evt.preventDefault();
   if (!setup.classList.contains('invisible')) {
     if (evt.keyCode === 13) {
-      setup.classList.add('invisible'); // [Вопрос] почему скрытие диалога работает и по нажатию Enter, и по клику, тогда как обработчик навешан только на событие keydown? см. строку 52
+      setup.classList.add('invisible');
     }
   }
-  buttonSubmit.setAttribute('aria-pressed', 'true'); // [Вопрос] не работает ни по какому событию - ?
+  buttonSubmit.setAttribute('aria-pressed', 'true');
 };
-
 
 setupOpen.addEventListener('click', setupClickOpen);
 
@@ -32,24 +32,21 @@ setupOpen.addEventListener('keydown', function (evt) {
 
 setupClose.addEventListener('click', setupClickClose);
 
-// [задание] Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога
 setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 13) {
     setup.classList.add('invisible');
   }
 });
 
-// [задание] Когда диалог открыт, то клавиша ESC должна закрывать диалог.
-document.addEventListener('keydown', function (evt) { // по хорошему, и здесь надо делать проверку на то, открыт ли диалог (нет класса invisible), но и так работает - насколько это критично?
-  if (evt.keyCode === 27) {
-    setup.classList.add('invisible');
+document.addEventListener('keydown', function (evt) {
+  if (!setup.classList.contains('invisible')) {
+    if (evt.keyCode === 27) {
+      setup.classList.add('invisible');
+    }
   }
 });
 
-// [задание] Если диалог открыт, нажатие на кнопку «Сохранить» приводит к закрытию диалога.
-// [задание] Если диалог открыт и фокус находится на кнопке «Сохранить», нажатие на ENTER приводит к закрытию диалога
-
-buttonSubmit.addEventListener('keydown', buttonSubmitClosed); // [Вопрос] К вопросу на стр. 18. Почему функция, закрывающая окно по наэатию Enter на кнопке "Сохранить" работает без навешивания addEventListener по событию click, а работают оба с событием keydown?
+buttonSubmit.addEventListener('keydown', buttonSubmitClosed);
 
 var nameInput = document.querySelector('.setup-user-name');
 nameInput.required = true;
