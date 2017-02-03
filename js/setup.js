@@ -2,17 +2,51 @@
 
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
+var setupClose = document.querySelector('.setup-close');
+var buttonSubmit = document.querySelector('.setup-submit');
 var setupClickOpen = function () {
   setup.classList.remove('invisible');
 };
-setupOpen.addEventListener('click', setupClickOpen);
 
-
-var setupClose = document.querySelector('.setup-close');
 var setupClickClose = function () {
   setup.classList.add('invisible');
 };
+
+var buttonSubmitClosed = function (evt) {
+  evt.preventDefault();
+  if (!setup.classList.contains('invisible')) {
+    if (evt.keyCode === 13) {
+      setup.classList.add('invisible');
+    }
+  }
+  buttonSubmit.setAttribute('aria-pressed', 'true');
+};
+
+setupOpen.addEventListener('click', setupClickOpen);
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    setup.classList.remove('invisible');
+  }
+});
+
 setupClose.addEventListener('click', setupClickClose);
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    setup.classList.add('invisible');
+  }
+});
+
+document.addEventListener('keydown', function (evt) {
+  if (!setup.classList.contains('invisible')) {
+    if (evt.keyCode === 27) {
+      setup.classList.add('invisible');
+    }
+  }
+});
+
+buttonSubmit.addEventListener('keydown', buttonSubmitClosed);
 
 var nameInput = document.querySelector('.setup-user-name');
 nameInput.required = true;
