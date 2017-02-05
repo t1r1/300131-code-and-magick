@@ -73,7 +73,6 @@ var fireballColors = ['#ee4830',
   '#e6e848'];
 
 
-
 window.colorizeElement(wizardCoat, wizardCoatColors, 'fill');
 window.colorizeElement(wizardEyes, wizardEyesColors, 'fill');
 window.colorizeElement(wizardFireball, fireballColors, 'backgroundColor');
