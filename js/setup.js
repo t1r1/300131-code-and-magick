@@ -72,12 +72,7 @@ var fireballColors = ['#ee4830',
   '#e848d5',
   '#e6e848'];
 
-wizardCoat.addEventListener('click', function () {
-  wizardCoat.style.fill = wizardCoatColors[Math.floor(Math.random() * wizardCoatColors.length)];
-});
-wizardEyes.addEventListener('click', function () {
-  wizardEyes.style.fill = wizardEyesColors[Math.floor(Math.random() * wizardEyesColors.length)];
-});
-wizardFireball.addEventListener('click', function () {
-  wizardFireball.style.backgroundColor = fireballColors[Math.floor(Math.random() * fireballColors.length)];
-});
+
+window.colorizeElement(wizardCoat, wizardCoatColors, 'fill');
+window.colorizeElement(wizardEyes, wizardEyesColors, 'fill');
+window.colorizeElement(wizardFireball, fireballColors, 'backgroundColor');
