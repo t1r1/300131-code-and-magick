@@ -23,7 +23,6 @@ var Dialog = {
     setup.classList.add('invisible');
     if (typeof this.callback === 'function') {
       this.callback();
-      this.callback = null;
     }
   },
   callback: null
@@ -35,7 +34,9 @@ setupOpen.addEventListener('click', function () {
 });
 setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 13) {
-    Dialog.callback = setupOpen.focus;
+    Dialog.callback = function () {
+      setupOpen.focus();
+    };
     Dialog.open();
   }
 });
