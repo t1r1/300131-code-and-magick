@@ -1,7 +1,7 @@
 'use strict';
 
 var setup = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
+var setupOpen = document.querySelector('.setup-open-icon');
 var setupClose = document.querySelector('.setup-close');
 var buttonSubmit = document.querySelector('.setup-submit');
 
@@ -29,7 +29,7 @@ var Dialog = {
 };
 
 
-setupOpen.addEventListener('click', function () { 
+setupOpen.addEventListener('click', function () {
   Dialog.open();
 });
 setupOpen.addEventListener('keydown', function (evt) {
@@ -41,7 +41,7 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
-setupClose.addEventListener('click', function () { 
+setupClose.addEventListener('click', function () {
   Dialog.close();
 });
 setupClose.addEventListener('keydown', function (evt) {
@@ -51,14 +51,11 @@ setupClose.addEventListener('keydown', function (evt) {
 });
 
 
-var setupKeydownClose = function (evt, callback) {
+var setupKeydownClose = function (evt) {
   if (!setup.classList.contains('invisible')) { // если окно открыто
     if (evt.keyCode === 27) {
       setup.classList.add('invisible');
     }
-  }
-  if (typeof callback === 'function') {
-    callback();
   }
 };
 
