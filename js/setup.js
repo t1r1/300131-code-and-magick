@@ -1,20 +1,9 @@
 'use strict';
-
 (function () {
   var setup = document.querySelector('.setup');
-  var setupOpen = document.querySelector('.setup-open');
+  var setupOpen = document.querySelector('.setup-open-icon');
   var setupClose = document.querySelector('.setup-close');
   var buttonSubmit = document.querySelector('.setup-submit');
-  var nameInput = document.querySelector('.setup-user-name');
-  nameInput.required = true;
-  nameInput.maxLength = 50;
-
-  var setupClickOpen = function () {
-    setup.classList.remove('invisible');
-  };
-  var setupClickClose = function () {
-    setup.classList.add('invisible');
-  };
 
   var buttonSubmitClosed = function (evt) {
     evt.preventDefault();
@@ -25,32 +14,58 @@
     }
     buttonSubmit.setAttribute('aria-pressed', 'true');
   };
-  setupOpen.addEventListener('click', setupClickOpen);
 
+  var Dialog = {
+    open: function () {
+      setup.classList.remove('invisible');
+    },
+    close: function () {
+      setup.classList.add('invisible');
+      if (typeof this.callback === 'function') {
+        this.callback();
+      }
+    },
+    callback: null
+  };
+
+
+  setupOpen.addEventListener('click', function () {
+    Dialog.open();
+  });
   setupOpen.addEventListener('keydown', function (evt) {
     if (evt.keyCode === 13) {
-      setup.classList.remove('invisible');
+      Dialog.callback = function () {
+        setupOpen.focus();
+      };
+      Dialog.open();
     }
   });
 
-  setupClose.addEventListener('click', setupClickClose);
-
+  setupClose.addEventListener('click', function () {
+    Dialog.close();
+  });
   setupClose.addEventListener('keydown', function (evt) {
     if (evt.keyCode === 13) {
-      setup.classList.add('invisible');
+      Dialog.close();
     }
   });
 
-  document.addEventListener('keydown', function (evt) {
-    if (!setup.classList.contains('invisible')) {
+
+  var setupKeydownClose = function (evt) {
+    if (!setup.classList.contains('invisible')) { // если окно открыто
       if (evt.keyCode === 27) {
         setup.classList.add('invisible');
       }
     }
-  });
+  };
+
+  document.addEventListener('keydown', setupKeydownClose);
 
   buttonSubmit.addEventListener('keydown', buttonSubmitClosed);
 
+  var nameInput = document.querySelector('.setup-user-name');
+  nameInput.required = true;
+  nameInput.maxLength = 50;
   var wizard = document.querySelector('#wizard');
   var wizardCoat = wizard.querySelector('#wizard-coat');
   var wizardFireball = document.querySelector('.setup-fireball-wrap');
