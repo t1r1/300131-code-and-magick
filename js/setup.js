@@ -3,7 +3,10 @@
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open-icon');
   var setupClose = document.querySelector('.setup-close');
+  var setupSimilar = document.querySelector('.setup-similar');
+  var setupWizard = document.querySelector('.setup-wizard');
   var buttonSubmit = document.querySelector('.setup-submit');
+  var dataURL = 'https://intensive-javascript-server-myophkugvq.now.sh/code-and-magick/data';
 
   var buttonSubmitClosed = function (evt) {
     evt.preventDefault();
@@ -15,9 +18,36 @@
     buttonSubmit.setAttribute('aria-pressed', 'true');
   };
 
+  var wizardsDataLoaded = function (data) {
+    var wizards = data;
+    var fiveWizards = wizards.splice(0, 5);
+    for (var j = 0; j < fiveWizards.length; j++) {
+      console.log(fiveWizards[j]);
+      var cloned = setupWizard.cloneNode(true);
+      cloned.classList.remove('setup-wizard');
+      cloned.classList.add('similar-wizard');
+      var children = cloned.querySelectorAll("*");
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].hasAttribute('id')) {
+          var id = children[i].id;
+          children[i].classList.add(id);
+          children[i].removeAttribute('id');
+        }
+      }
+      var coat = cloned.querySelector(".wizard-coat");
+      coat.style.fill = fiveWizards[j].colorCoat;
+      var eyes = cloned.querySelector(".wizard-eyes");
+      eyes.style.fill = fiveWizards[j].colorEyes;
+
+      setupSimilar.appendChild(cloned);
+    }
+    // setupSimilar.innerHTML = fiveWizards;
+  };
+
   var Dialog = {
     open: function () {
       setup.classList.remove('invisible');
+      window.load(dataURL, wizardsDataLoaded);
     },
     close: function () {
       setup.classList.add('invisible');
