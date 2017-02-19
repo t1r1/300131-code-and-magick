@@ -20,13 +20,18 @@
 
   var wizardsDataLoaded = function (data) {
     var wizards = data;
-    var fiveWizards = wizards.splice(0, 5);
+    var fiveWizards = [];
+    var index;
+    for (index = 0; index < 5; index++) {
+      var randomIndex = Math.floor(Math.random() * wizards.length);
+      var randomElement = wizards.splice(randomIndex, 1)[0];
+      fiveWizards.push(randomElement);
+    }
     for (var j = 0; j < fiveWizards.length; j++) {
-      console.log(fiveWizards[j]);
       var cloned = setupWizard.cloneNode(true);
       cloned.classList.remove('setup-wizard');
-      cloned.classList.add('similar-wizard');
-      var children = cloned.querySelectorAll("*");
+      cloned.classList.add('similar-wizard-img');
+      var children = cloned.querySelectorAll('*');
       for (var i = 0; i < children.length; i++) {
         if (children[i].hasAttribute('id')) {
           var id = children[i].id;
@@ -34,14 +39,21 @@
           children[i].removeAttribute('id');
         }
       }
-      var coat = cloned.querySelector(".wizard-coat");
+      var coat = cloned.querySelector('.wizard-coat');
       coat.style.fill = fiveWizards[j].colorCoat;
-      var eyes = cloned.querySelector(".wizard-eyes");
+      var eyes = cloned.querySelector('.wizard-eyes');
       eyes.style.fill = fiveWizards[j].colorEyes;
 
-      setupSimilar.appendChild(cloned);
+      var div = document.createElement('div');
+      div.className = 'similar-wizard';
+      var span = document.createElement('span');
+      span.className = 'similar-wizard-title';
+      setupSimilar.appendChild(div);
+
+      div.appendChild(cloned);
+      div.appendChild(span);
+      span.innerHTML = fiveWizards[j].name;
     }
-    // setupSimilar.innerHTML = fiveWizards;
   };
 
   var Dialog = {
