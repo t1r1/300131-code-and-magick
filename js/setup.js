@@ -7,6 +7,7 @@
   var setupWizard = document.querySelector('.setup-wizard');
   var buttonSubmit = document.querySelector('.setup-submit');
   var dataURL = 'https://intensive-javascript-server-myophkugvq.now.sh/code-and-magick/data';
+  window.setupSimilar = setupSimilar;
 
   var buttonSubmitClosed = function (evt) {
     evt.preventDefault();
@@ -19,6 +20,7 @@
   };
 
   var wizardsDataLoaded = function (data) {
+    setupSimilar.innerHTML = "";
     var wizards = data;
     var fiveWizards = [];
     var index;
@@ -48,16 +50,19 @@
       div.className = 'similar-wizard';
       var span = document.createElement('span');
       span.className = 'similar-wizard-title';
-      setupSimilar.appendChild(div);
 
       div.appendChild(cloned);
       div.appendChild(span);
+      setupSimilar.appendChild(div);
       span.innerHTML = fiveWizards[j].name;
     }
   };
 
   var Dialog = {
     open: function () {
+      if (!setup.classList.contains('invisible')) {
+        return;
+      }
       setup.classList.remove('invisible');
       window.load(dataURL, wizardsDataLoaded);
     },
