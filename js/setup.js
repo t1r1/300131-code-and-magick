@@ -20,7 +20,7 @@
   };
 
   var wizardsDataLoaded = function (data) {
-    setupSimilar.innerHTML = "";
+    setupSimilar.innerHTML = '';
     var wizards = data;
     var fiveWizards = [];
     var index;
