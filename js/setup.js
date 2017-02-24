@@ -64,7 +64,6 @@
         return;
       }
       setup.classList.remove('invisible');
-      window.load(dataURL, wizardsDataLoaded);
     },
     close: function () {
       setup.classList.add('invisible');
@@ -134,8 +133,14 @@
     '#e848d5',
     '#e6e848'];
 
-  window.colorizeElement(wizardCoat, wizardCoatColors, 'fill');
-  window.colorizeElement(wizardEyes, wizardEyesColors, 'fill');
-  window.colorizeElement(wizardFireball, fireballColors, 'backgroundColor');
+  window.colorizeElement(wizardCoat, wizardCoatColors, 'fill', function () {
+    window.load(dataURL, wizardsDataLoaded);
+  });
+  window.colorizeElement(wizardEyes, wizardEyesColors, 'fill', function () {
+    window.load(dataURL, wizardsDataLoaded);
+  });
+  window.colorizeElement(wizardFireball, fireballColors, 'backgroundColor', function () {
+    window.load(dataURL, wizardsDataLoaded);
+  });
 
 })();
