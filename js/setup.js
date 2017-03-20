@@ -6,7 +6,7 @@
   var setupSimilar = document.querySelector('.setup-similar');
   var setupWizard = document.querySelector('.setup-wizard');
   var buttonSubmit = document.querySelector('.setup-submit');
-  var dataURL = 'https://intensive-javascript-server-myophkugvq.now.sh/code-and-magick/data';
+  var dataURL = 'http://t1r1.ru/portfolio/code-and-magick/data';
   window.setupSimilar = setupSimilar;
 
   var buttonSubmitClosed = function (evt) {
